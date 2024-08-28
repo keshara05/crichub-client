@@ -14,11 +14,11 @@ const Login = () => {
       <form action="">
         <h1>Sign in</h1>
         <div className='input-box'>
-          <input type="text" placeholder='E-mail' required />
+          <input type="email" placeholder='E-mail' required />
           <FaUserAlt className='icon' />
         </div>
         <div className='input-box'>
-          <input type="password" placeholder='Password' required />
+          <input type="password" placeholder='Password' minlength="8" required />
           <FaLock className='icon' />
         </div>
 
@@ -30,7 +30,9 @@ const Login = () => {
         <button type='submit'>Sign in</button>
 
         <div className='register-link'>
-          <p>Don't have an account? <a href="#">Register</a></p>
+          <p>Holy! you are unable to create a new account Please contact Administrator. <a href="mailto:nilushkapoornima@gmail.com?subject=Issue%20with%20Account%20Creation&body=I%20encountered%20an%20issue%20while%20trying%20to%20create%20a%20new%20account.%20Please%20assist.">
+      Leave a note
+   </a></p>
         </div>
       </form>
       </div>

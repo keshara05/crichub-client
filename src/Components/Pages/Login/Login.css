@@ -22,7 +22,7 @@
     color: #fff;
     border: 2px solid rgb(19, 0, 139);
     border-radius: 0px 20px 20px 0px;
-    padding: 7%;
+    padding: 7% 5%;
 }
 
 .wrapper h1 {
@@ -55,7 +55,7 @@
 }
 
 .input-box input:focus{
-    background: #f1f1f1;
+    border: 2px solid rgb(16, 1, 112);
 }
 
 .input-box .icon{
@@ -124,3 +124,21 @@
 .register-link p a:hover{
     text-decoration: underline;
 }
+
+@media (max-width: 1000px) {
+    .main-login-page {
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .main-image {
+        display: none; 
+    }
+
+    .wrapper {
+        width: 90%;  
+        border-radius: 20px;
+    }
+
+}
+
