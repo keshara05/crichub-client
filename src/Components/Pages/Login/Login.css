@@ -109,19 +109,19 @@
     transition-duration: 0.6s;
 }
 
-.wrapper .register-link{
+.wrapper .leave-note{
     font-size: 14.5px;
     text-align: center;
     margin-top: 20px;
 }
 
-.register-link p a{
+.leave-note p a{
     color: #fff;
     text-decoration: none;
     font-weight: 600;
 }
 
-.register-link p a:hover{
+.leave-note p a:hover{
     text-decoration: underline;
 }
 
