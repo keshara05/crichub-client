@@ -35,7 +35,7 @@ const Login = () => {
           <button type='submit'>Sign in</button>
 
           <div className='leave-note'>
-            <p>Holy! You are unable to create a new account. Please contact the Administrator.
+            <p>You are unable to create a new account. Please contact the Administrator.
               <a onClick={openGmail}> Leave a note </a>
             </p>
 
