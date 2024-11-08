@@ -9,8 +9,9 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/Login" element={<Login />} />
+        {/* <Route path="/" element={<Dashboard />} /> */}
+        <Route path="/" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
         <Route path='/System_Admin_Dashboard' element={<System_Admin_Dashboard />} />
       </Routes>
     </div>
