@@ -1,16 +1,21 @@
 import React from 'react';
-import Login from './Components/Pages/login/Login';
-import Registration from './Components/Pages/registration/Registration';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './Components/Pages/dashboard/Dashboard';
-import { Routes, Route } from 'react-router-dom';
+import Matches from './Components/Pages/matches/matches';
+import Schedule from './Components/Pages/schedule/schedule';
+import Navbar from './Components/navbar/Navbar';
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/Login" element={<Login />} />
-      </Routes>
+      <Router>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/matches" element={<Matches />} />
+          <Route path="/schedule" element={<Schedule />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
