@@ -3,13 +3,12 @@ import "./leaderboard.css";
 
 const Leaderboard = () => {
   const [players, setPlayers] = useState([]);
-  const [filter, setFilter] = useState("bowling"); // Default filter
+  const [filter, setFilter] = useState("bowling"); // Default filter is bowling
 
   useEffect(() => {
-    // Fetch players from backend API
     const fetchPlayers = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/players"); // Replace with your API endpoint
+        const response = await fetch("http://localhost:8000/api/players"); // Replace with actual API endpoint
         const data = await response.json();
         setPlayers(data);
       } catch (error) {
@@ -20,36 +19,20 @@ const Leaderboard = () => {
     fetchPlayers();
   }, []);
 
-  const sortPlayers = (players, filter) => {
-    switch (filter) {
-      case "bowling":
-        return [...players].sort(
-          (a, b) =>
-            b.bowling.wickets / b.bowling.matches -
-            a.bowling.wickets / a.bowling.matches
-        );
-      case "batting":
-        return [...players].sort(
-          (a, b) =>
-            b.batting.runs / b.batting.matches -
-            a.batting.runs / a.batting.matches
-        );
-      case "fielding":
-        return [...players].sort(
-          (a, b) =>
-            b.fielding.catches / b.fielding.matches -
-            a.fielding.catches / a.fielding.matches
-        );
-      default:
-        return players;
+  const getSortedPlayers = () => {
+    if (filter === "bowling") {
+      return [...players].sort((a, b) => b.bowling.wickets - a.bowling.wickets);
+    } else if (filter === "batting") {
+      return [...players].sort((a, b) => b.batting.runs - a.batting.runs);
+    } else if (filter === "fielding") {
+      return [...players].sort((a, b) => b.fielding.catches - a.fielding.catches);
     }
+    return players;
   };
-
-  const sortedPlayers = sortPlayers(players, filter);
 
   return (
     <div className="leaderboard-container">
-      <h2>Player Leaderboard</h2>
+      <h1>Player Leaderboard</h1>
       <div className="filter-buttons">
         <button
           className={filter === "bowling" ? "active" : ""}
@@ -70,33 +53,22 @@ const Leaderboard = () => {
           Fielding
         </button>
       </div>
-      <div className="player-list">
-        {sortedPlayers.map((player) => (
-          <div key={player._id} className="player-card">
-            <h3>{player.name}</h3>
-            <p><strong>Club:</strong> {player.club?.name || "N/A"}</p>
-            <p><strong>Matches:</strong> {player[filter].matches}</p>
-            <p>
-              <strong>
-                {filter === "bowling"
-                  ? "Wickets per Match"
-                  : filter === "batting"
-                  ? "Runs per Match"
-                  : "Catches per Match"}:
-              </strong>{" "}
-              {(
-                player[filter][
-                  filter === "bowling"
-                    ? "wickets"
-                    : filter === "batting"
-                    ? "runs"
-                    : "catches"
-                ] / player[filter].matches || 0
-              ).toFixed(2)}
-            </p>
-          </div>
+      <ul className="player-list">
+        {getSortedPlayers().map((player) => (
+          <li key={player._id} className="player-item">
+            <span className="player-name">{player.name}</span>
+            {filter === "bowling" && (
+              <span className="player-stat">{player.bowling.wickets} Wickets</span>
+            )}
+            {filter === "batting" && (
+              <span className="player-stat">{player.batting.runs} Runs</span>
+            )}
+            {filter === "fielding" && (
+              <span className="player-stat">{player.fielding.catches} Catches</span>
+            )}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
