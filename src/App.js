@@ -8,14 +8,12 @@ import Navbar from './Components/navbar/Navbar';
 function App() {
   return (
     <div>
-      <Router>
       <Navbar />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/matches" element={<Matches />} />
           <Route path="/schedule" element={<Schedule />} />
         </Routes>
-      </Router>
     </div>
   );
 }
