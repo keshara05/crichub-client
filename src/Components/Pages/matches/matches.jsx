@@ -1,75 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useFetch from "../../../hooks/useFetch";
 import "./matches.css";
 
 const Matches = () => {
-  const [matches, setMatches] = useState([]);
-  const [clubs, setClubs] = useState([]);
-  const [loading, setLoading] = useState(true); // Add a loading state
-
-  useEffect(() => {
-    // Fetch matches from the backend API
-    const fetchMatches = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/matches"); // Replace with actual API endpoint
-        const data = await response.json();
-        setMatches(data);
-      } catch (error) {
-        console.error("Error fetching matches:", error);
-      }
-    };
-
-    const fetchClubs = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/clubs"); // Replace with actual API endpoint
-        const data = await response.json();
-        setClubs(data);
-      } catch (error) {
-        console.error("Error fetching clubs:", error);
-      }
-    };
-
-    const fetchData = async () => {
-      setLoading(true); // Set loading to true before fetching
-      await Promise.all([fetchClubs(), fetchMatches()]);
-      setLoading(false); // Set loading to false after fetching
-    };
-
-    fetchData();
-  }, []);
+  const { data: matches, loading, error } = useFetch("http://localhost:8000/api/matches");
+  const { data: clubs } = useFetch("http://localhost:8000/api/clubs");
 
   const getClubNameById = (id) => {
-    const club = clubs.find((club) => club._id === id);
+    const club = clubs?.find((club) => club._id === id);
     return club ? club.name : "";
   };
+
+  const getFlagByClubId = (id) => {
+    const club = clubs?.find((club) => club._id === id);
+    return club ? club.image : ""; 
+  };
+
+
 
   return (
     <div className="matches-container">
       <h2>Matches</h2>
       {loading ? (
-        <div className="loading-indicator">Loading...</div> // Loading indicator
+        <div className="loading-indicator">Loading...</div>
+      ) : error ? (
+        <div className="error-indicator">Error loading data</div>
       ) : (
         <div className="matches-list">
-          {matches.length > 0 ? (
-            matches.map((match) => (
+          {matches?.map((match) => {
+            const currentClub = match.currentInnings === "club1" ? match.club1 : match.club2;
+            const opponentClub = match.currentInnings === "club1" ? match.club2 : match.club1;
+
+            const currentClubName = getClubNameById(currentClub.club);
+            const opponentClubName = getClubNameById(opponentClub.club);
+
+            const currentClubFlag = getFlagByClubId(currentClub.club);
+            const opponentClubFlag = getFlagByClubId(opponentClub.club);
+
+            const target = currentClub.score + 1;
+
+            return (
               <div key={match._id} className="match-card">
-                <h3>
-                  {getClubNameById(match.club1.club)} vs{" "}
-                  {getClubNameById(match.club2.club)}
-                </h3>
-                <p>
-                  <strong>Score:</strong> {match.club1.score}
-                </p>
-                <p>
-                  <strong>Wickets:</strong> {match.club1.wickets}
-                </p>
-                <p>
-                  <strong>Overs:</strong> {match.overs}
-                </p>
+                <div className="match-header">
+                  {/* <p>{`Men's Gulf T20 Championship - T20`}</p>
+                  <p>{`Match ${match._id}`}</p> */}
+                  <p>{match.status}</p>
+                </div>
+                <div className="match-body">
+                  <div className="team">
+                    <div className="team-info">
+                      <img src={currentClubFlag} alt={`${currentClubName} flag`} className="team-flag" />
+                      <p className="team-name">{currentClubName}</p>
+                    </div>
+                    <p className="team-stats">{`${currentClub.score}/${currentClub.wickets} (${currentClub.overs})`}</p>
+                  </div>
+
+                  <div className="team">
+                    <div className="team-info">
+                    <img src={opponentClubFlag} alt={`${opponentClubName} flag`} className="team-flag" />
+                    <p>{opponentClubName}</p>
+                    </div>
+                    <p>{match.currentInnings === "club1" ? "Yet to bat" : `${opponentClub.score}/${opponentClub.wickets}`}</p>
+                  </div>
+                </div>
+                <div className="match-footer">
+                  <p>{`${getClubNameById(match.tossWinner)} chose to ${match.tossChoice.toLowerCase()}`}</p>
+                  {match.currentInnings === "club2" && (
+                    <p>{`Target: ${target}`}</p>
+                  )}
+                </div>
               </div>
-            ))
-          ) : (
-            <p>No matches available at the moment.</p>
-          )}
+            );
+          })}
         </div>
       )}
     </div>
