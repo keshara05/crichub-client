@@ -56,3 +56,9 @@
   color: #555;
   font-size: 14px;
 }
+
+.loading-indicator {
+  text-align: center;
+  font-size: 1.5em;
+  color: #555;
+}
