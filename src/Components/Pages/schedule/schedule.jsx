@@ -1,5 +1,6 @@
 import React from 'react';
 import './schedule.css';
+import EventList from './EventList';
 
 const Schedule = () => (
   <div className="schedule">
@@ -10,6 +11,7 @@ const Schedule = () => (
       height="600"
       title="Client Schedule"
     ></iframe>
+    <EventList />
   </div>
 );
 

@@ -19,9 +19,14 @@ const News = () => {
     return <div className="news-empty">No news available at the moment.</div>;
   }
 
+  // Sort news by publishedDate (newest first)
+  const sortedNews = [...data].sort(
+    (a, b) => new Date(b.publishedDate) - new Date(a.publishedDate)
+  );
+
   // Pagination Logic
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const currentNews = data.slice(
+  const totalPages = Math.ceil(sortedNews.length / itemsPerPage);
+  const currentNews = sortedNews.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -44,7 +49,9 @@ const News = () => {
       <div className="news-grid">
         {currentNews.map((item) => (
           <div key={item._id} className="news-card">
-            {item.image && <img src={item.image} alt={item.title} className="news-image" />}
+            {item.image && (
+              <img src={item.image} alt={item.title} className="news-image" />
+            )}
             <div className="news-content">
               <h2 className="news-title">{item.title}</h2>
               <p className="news-meta">
