@@ -3,25 +3,13 @@ import useFetch from "../../../hooks/useFetch";
 import "./leaderboard.css";
 
 const Leaderboard = () => {
-  const [players, setPlayers] = useState([]);
-  const [filter, setFilter] = useState("bowling"); // Default filter is bowling
-  const { clubs } = useFetch("http://localhost:8000/api/clubs");
+  //const [players, setPlayers] = useState([]);
+  const [filter, setFilter] = useState("bowling"); 
+  const { data:clubs, loading: clubsLoading, error: clubsError } = useFetch("http://localhost:8000/api/clubs");
+  const {data:players, loading: playerLoading, error: playerError} = useFetch("http://localhost:8000/api/players");
   const [currentPage, setCurrentPage] = useState(1);
-  const playersPerPage = 6; // Number of players per page
+  const playersPerPage = 6; 
 
-  useEffect(() => {
-    const fetchPlayers = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/api/players"); // Replace with actual API endpoint
-        const data = await response.json();
-        setPlayers(data);
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
-    fetchPlayers();
-  }, []);
 
   const getSortedPlayers = () => {
     if (filter === "bowling") {
@@ -57,7 +45,7 @@ const Leaderboard = () => {
 
   const getClubNameById = (id) => {
     const club = clubs?.find((club) => club._id === id);
-    return club ? club.name : "Unknown Club";
+    return club ? club.name : "";
   };
 
   return (
@@ -97,7 +85,7 @@ const Leaderboard = () => {
           <li key={player._id} className="player-item">
             <div className="player-club">
             <span className="player-name">{player.name}</span>
-            <span className="club-name">{getClubNameById(player.club)}</span>
+            <span className="club-name">{getClubNameById(player.club)|| "Player not in Club"}</span>
             </div>
             {filter === "bowling" && (
               <span className="player-stat">{player.bowling.wickets} Wickets</span>
