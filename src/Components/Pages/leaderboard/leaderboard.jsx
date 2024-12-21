@@ -85,7 +85,7 @@ const Leaderboard = () => {
           <li key={player._id} className="player-item">
             <div className="player-club">
             <span className="player-name">{player.name}</span>
-            <span className="club-name">{getClubNameById(player.club)}</span>
+            <span className="club-name">{getClubNameById(player.club)|| "Player not in Club"}</span>
             </div>
             {filter === "bowling" && (
               <span className="player-stat">{player.bowling.wickets} Wickets</span>
