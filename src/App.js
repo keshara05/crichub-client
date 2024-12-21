@@ -5,6 +5,7 @@ import Matches from './Components/Pages/matches/matches';
 import Schedule from './Components/Pages/schedule/schedule';
 import Navbar from './Components/navbar/Navbar';
 import Leaderboard from './Components/Pages/leaderboard/leaderboard';
+import News from './Components/Pages/news/news';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/matches" element={<Matches />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/news" element={<News />} />
         </Routes>
     </div>
   );
