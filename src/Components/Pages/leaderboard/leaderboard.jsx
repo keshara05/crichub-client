@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import useFetch from "../../../hooks/useFetch";
 import "./leaderboard.css";
 
 const Leaderboard = () => {
   const [players, setPlayers] = useState([]);
   const [filter, setFilter] = useState("bowling"); // Default filter is bowling
+  const { clubs } = useFetch("http://localhost:8000/api/clubs");
+  const [currentPage, setCurrentPage] = useState(1);
+  const playersPerPage = 6; // Number of players per page
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -30,33 +34,71 @@ const Leaderboard = () => {
     return players;
   };
 
+  const paginatedPlayers = () => {
+    const sortedPlayers = getSortedPlayers();
+    const startIndex = (currentPage - 1) * playersPerPage;
+    const endIndex = startIndex + playersPerPage;
+    return sortedPlayers.slice(startIndex, endIndex);
+  };
+
+  const totalPages = Math.ceil(getSortedPlayers().length / playersPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const getClubNameById = (id) => {
+    const club = clubs?.find((club) => club._id === id);
+    return club ? club.name : "Unknown Club";
+  };
+
   return (
     <div className="leaderboard-container">
       <h1>Player Leaderboard</h1>
       <div className="filter-buttons">
         <button
           className={filter === "bowling" ? "active" : ""}
-          onClick={() => setFilter("bowling")}
+          onClick={() => {
+            setFilter("bowling");
+            setCurrentPage(1); // Reset to first page when filter changes
+          }}
         >
           Bowling
         </button>
         <button
           className={filter === "batting" ? "active" : ""}
-          onClick={() => setFilter("batting")}
+          onClick={() => {
+            setFilter("batting");
+            setCurrentPage(1);
+          }}
         >
           Batting
         </button>
         <button
           className={filter === "fielding" ? "active" : ""}
-          onClick={() => setFilter("fielding")}
+          onClick={() => {
+            setFilter("fielding");
+            setCurrentPage(1);
+          }}
         >
           Fielding
         </button>
       </div>
       <ul className="player-list">
-        {getSortedPlayers().map((player) => (
+        {paginatedPlayers().map((player) => (
           <li key={player._id} className="player-item">
+            <div className="player-club">
             <span className="player-name">{player.name}</span>
+            <span className="club-name">{getClubNameById(player.club)}</span>
+            </div>
             {filter === "bowling" && (
               <span className="player-stat">{player.bowling.wickets} Wickets</span>
             )}
@@ -69,6 +111,25 @@ const Leaderboard = () => {
           </li>
         ))}
       </ul>
+      <div className="pagination">
+        <button
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+          className="pagination-button"
+        >
+          Previous
+        </button>
+        <span className="page-info">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="pagination-button"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
