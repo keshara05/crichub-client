@@ -8,7 +8,7 @@ const Leaderboard = () => {
   const { data:clubs, loading: clubsLoading, error: clubsError } = useFetch("http://localhost:8000/api/clubs");
   const {data:players, loading: playerLoading, error: playerError} = useFetch("http://localhost:8000/api/players");
   const [currentPage, setCurrentPage] = useState(1);
-  const playersPerPage = 6; 
+  const playersPerPage = 5; 
 
 
   const getSortedPlayers = () => {
@@ -49,6 +49,7 @@ const Leaderboard = () => {
   };
 
   return (
+    <div>
     <div className="leaderboard-container">
       <h1>Player Leaderboard</h1>
       <div className="filter-buttons">
@@ -99,7 +100,9 @@ const Leaderboard = () => {
           </li>
         ))}
       </ul>
-      <div className="pagination">
+      
+    </div>
+    <div className="pagination">
         <button
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
