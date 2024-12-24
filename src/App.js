@@ -6,11 +6,13 @@ import Schedule from './Components/Pages/schedule/schedule';
 import Navbar from './Components/navbar/Navbar';
 import Leaderboard from './Components/Pages/leaderboard/leaderboard';
 import News from './Components/Pages/news/news';
+import BlurBackground from './Components/Pages/BlurBackground';
 
 function App() {
   return (
     <div>
       <Navbar />
+      <BlurBackground />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/matches" element={<Matches />} />

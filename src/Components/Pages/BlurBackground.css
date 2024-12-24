@@ -1,0 +1,32 @@
+.blur-background {
+    position: fixed;
+    inset: 0;
+    z-index: -50;
+    overflow: hidden;
+  }
+  
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(50px);
+  }
+  
+  .blob.large {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(128, 0, 128, 0.8); /* Purple */
+  }
+  
+  .blob.medium {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 255, 255, 0.7); /* Cyan */
+  }
+  
+  .blob.small {
+    width: 250px;
+    height: 250px;
+    background-color: rgba(255, 105, 180, 0.8); /* Pink */
+  }
+  
