@@ -7,7 +7,7 @@ import Navbar from './Components/navbar/Navbar';
 import Leaderboard from './Components/Pages/leaderboard/leaderboard';
 import News from './Components/Pages/news/news';
 import BlurBackground from './Components/Pages/BlurBackground';
-import Explore from './Components/Pages/explore/Explore';
+import Explore from './Components/Pages/exploreMore/Explore';
 import NewsItemPage from './Components/Pages/newsItemPage/NewsItemPage';
 import Footer from './Components/Pages/footer/Footer';
 import './App.css'; 
