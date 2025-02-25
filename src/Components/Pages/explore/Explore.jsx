@@ -1,5 +1,5 @@
 import React from "react";
-import "./exploreMore.css";
+import "./explore.css";
 
 const Explore = () => {
   return (
