@@ -7,3 +7,26 @@ body {
 .App {
   text-align: center;
 }
+
+/* App Container should take full height */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* Ensures content takes available space */
+}
+
+/* Footer styles (same as before) */
+.footer {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

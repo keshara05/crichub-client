@@ -1,21 +1,33 @@
 import React from "react";
 import "./navbar.css";
 import logo from "../Assets/Cricketer logo.png"
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <a href="/dashboard">
-      <div className="navbar-logo">
-      <img src={logo} alt="CricHub Logo" />
-        <span className="logo-name">CricHub</span>
-      </div></a>
+      <Link to="/">
+        <div className="navbar-logo">
+          <img src={logo} alt="CricHub Logo" />
+          <span className="logo-name">CricHub</span>
+        </div>
+      </Link>
       <ul className="navbar-links">
-      <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/matches">Matches</a></li>
-        <li><a href="/schedule">Schedule</a></li>
-        <li><a href="/leaderboard">Leaderboard</a></li>
-        <li><a href="/news">News</a></li>
+        <li>
+          <Link to="/">Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/matches">Matches</Link>
+        </li>
+        <li>
+          <Link to="/schedule">Schedule</Link>
+        </li>
+        <li>
+          <Link to="/leaderboard">Leaderboard</Link>
+        </li>
+        <li>
+          <Link to="/news">News</Link>
+        </li>
       </ul>
       
     </nav>
