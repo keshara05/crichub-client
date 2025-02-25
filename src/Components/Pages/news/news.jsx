@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import useFetch from "../../../hooks/useFetch";
 import "./news.css";
 
@@ -6,6 +7,7 @@ const News = () => {
   const { data, loading, error } = useFetch("http://localhost:8000/api/news");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
+  const navigate = useNavigate(); // Initialize useNavigate
 
   if (loading) {
     return <div className="news-loading">Loading news...</div>;
@@ -43,12 +45,21 @@ const News = () => {
     }
   };
 
+  // Navigate to NewsItem page
+  const handleNewsClick = (id) => {
+    navigate(`/news/${id}`); // Navigate to the news item page
+  };
+
   return (
     <div className="news-container">
       <h1 className="news-header">Latest News</h1>
       <div className="news-grid">
         {currentNews.map((item) => (
-          <div key={item._id} className="news-card">
+          <div
+            key={item._id}
+            className="news-card"
+            onClick={() => handleNewsClick(item._id)} // Add click handler
+          >
             {item.image && (
               <img src={item.image} alt={item.title} className="news-image" />
             )}

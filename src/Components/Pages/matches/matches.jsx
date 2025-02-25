@@ -16,8 +16,6 @@ const Matches = () => {
     return club ? club.image : ""; 
   };
 
-
-
   return (
     <div className="matches-container">
       <h2>Matches</h2>
@@ -42,8 +40,6 @@ const Matches = () => {
             return (
               <div key={match._id} className="match-card">
                 <div className="match-header">
-                  {/* <p>{`Men's Gulf T20 Championship - T20`}</p>
-                  <p>{`Match ${match._id}`}</p> */}
                   <p>{match.status}</p>
                 </div>
                 <div className="match-body">
@@ -57,8 +53,8 @@ const Matches = () => {
 
                   <div className="team">
                     <div className="team-info">
-                    <img src={opponentClubFlag} alt={`${opponentClubName} flag`} className="team-flag" />
-                    <p>{opponentClubName}</p>
+                      <img src={opponentClubFlag} alt={`${opponentClubName} flag`} className="team-flag" />
+                      <p>{opponentClubName}</p>
                     </div>
                     <p>{match.currentInnings === "club1" ? "Yet to bat" : `${opponentClub.score}/${opponentClub.wickets}`}</p>
                   </div>

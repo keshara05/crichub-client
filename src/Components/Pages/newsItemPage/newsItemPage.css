@@ -1,0 +1,52 @@
+.news-item-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.news-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.news-meta {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.news-author {
+  margin-right: 10px;
+}
+
+.news-date {
+  font-style: italic;
+}
+
+.news-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.news-content {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Loading and Error States */
+.loading-indicator,
+.error-indicator,
+.news-empty {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #777;
+  margin: 50px 0;
+}
