@@ -1,89 +1,93 @@
 /* General Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #007bff;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #fff;
-  }
-  
-  .navbar-logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue background */
+  padding: 8px 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  position: fixed; /* Fix the navbar at the top */
+  top: 0; /* Position at the top of the page */
+  left: 0; /* Align to the left */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure the navbar is above other content */
+  backdrop-filter: blur(10px); /* Optional: Add a blur effect to the background */
+}
+
+/* Logo Section */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-name {
+  font-size: 24px;
+  font-weight: 600; /* Slightly bolder for emphasis */
+  color: #fff;
+}
+
+/* Navbar Links */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 15px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500; /* Medium weight for better readability */
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #ffd700; /* Gold color for hover effect */
+}
+
+/* Mobile Menu Icon */
+.mobile-menu-icon {
+  display: none; /* Hidden by default */
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .navbar-links {
+    display: none; /* Hide links on mobile */
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(0, 123, 255, 0.9); /* Semi-transparent blue background for mobile menu */
+    position: absolute;
+    top: 70px; /* Adjust based on navbar height */
+    left: 0;
+    padding: 10px 0;
   }
 
-  a {
-    text-decoration: none;
-    color: white;
+  .navbar-links.active {
+    display: flex; /* Show links when mobile menu is open */
   }
-  
-  .navbar-logo img {
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .navbar-logo span {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .navbar-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
+
   .navbar-links li {
-    margin: 0 15px;
+    margin: 10px 0;
+    text-align: center;
   }
-  
-  .navbar-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 16px;
-    transition: color 0.3s ease;
+
+  .mobile-menu-icon {
+    display: block; /* Show hamburger icon on mobile */
   }
-  
-  .navbar-links a:hover {
-    color: #ffd700;
-  }
-  
-  .navbar-login .login-btn {
-    text-decoration: none;
-    color: #007bff;
-    background-color: #fff;
-    padding: 5px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .navbar-login .login-btn:hover {
-    background-color: #ffd700;
-    color: #007bff;
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .navbar-links {
-      display: none;
-    }
-  
-    .navbar {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-logo {
-      justify-content: space-between;
-      width: 100%;
-    }
-  
-    .navbar-login {
-      margin-top: 10px;
-    }
-  }
-  
+}

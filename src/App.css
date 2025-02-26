@@ -1,14 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+html{
+  scroll-behavior: smooth;
 }
 
 .App {
   text-align: center;
 }
 
-/* App Container should take full height */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -16,10 +27,9 @@ body {
 }
 
 .main-content {
-  flex: 1; /* Ensures content takes available space */
+  flex: 1; 
 }
 
-/* Footer styles (same as before) */
 .footer {
   background-color: #007bff;
   color: #fff;

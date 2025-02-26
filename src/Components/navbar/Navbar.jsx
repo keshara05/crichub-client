@@ -1,35 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
-import logo from "../Assets/Cricketer logo.png"
+import logo from "../Assets/Cricketer logo.png";
 import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa"; // Import icons for the hamburger menu
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className="navbar">
-      <Link to="/">
-        <div className="navbar-logo">
-          <img src={logo} alt="CricHub Logo" />
-          <span className="logo-name">CricHub</span>
-        </div>
+      <Link to="/" className="navbar-logo">
+        <img src={logo} alt="CricHub Logo" />
+        <span className="logo-name">CricHub</span>
       </Link>
-      <ul className="navbar-links">
+
+      {/* Hamburger Menu Icon (Mobile Only) */}
+      <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+        {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* Navbar Links */}
+      <ul className={`navbar-links ${isMobileMenuOpen ? "active" : ""}`}>
         <li>
-          <Link to="/">Dashboard</Link>
+          <Link to="/" onClick={toggleMobileMenu}>
+            Dashboard
+          </Link>
         </li>
         <li>
-          <Link to="/matches">Matches</Link>
+          <Link to="/matches" onClick={toggleMobileMenu}>
+            Matches
+          </Link>
         </li>
         <li>
-          <Link to="/schedule">Schedule</Link>
+          <Link to="/schedule" onClick={toggleMobileMenu}>
+            Schedule
+          </Link>
         </li>
         <li>
-          <Link to="/leaderboard">Leaderboard</Link>
+          <Link to="/leaderboard" onClick={toggleMobileMenu}>
+            Leaderboard
+          </Link>
         </li>
         <li>
-          <Link to="/news">News</Link>
+          <Link to="/news" onClick={toggleMobileMenu}>
+            News
+          </Link>
         </li>
       </ul>
-      
     </nav>
   );
 };

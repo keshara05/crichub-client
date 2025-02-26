@@ -8,7 +8,7 @@ const Leaderboard = () => {
   const { data:clubs, loading: clubsLoading, error: clubsError } = useFetch("http://localhost:8000/api/clubs");
   const {data:players, loading: playerLoading, error: playerError} = useFetch("http://localhost:8000/api/players");
   const [currentPage, setCurrentPage] = useState(1);
-  const playersPerPage = 5; 
+  const playersPerPage = 10; 
 
 
   const getSortedPlayers = () => {

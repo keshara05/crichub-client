@@ -10,11 +10,13 @@ import BlurBackground from './Components/Pages/BlurBackground';
 import Explore from './Components/Pages/explore/Explore';
 import NewsItemPage from './Components/Pages/newsItemPage/NewsItemPage';
 import Footer from './Components/Pages/footer/Footer';
+import SmoothScroll from './Components/Pages/SmoothScroll';
 import './App.css'; 
 
 function App() {
   return (
     <div className="app-container">
+      <SmoothScroll>
       <Navbar />
       {/* <BlurBackground /> */}
       <div className="main-content">
@@ -29,6 +31,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      </SmoothScroll>
     </div>
   );
 }
