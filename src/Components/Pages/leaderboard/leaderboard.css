@@ -1,7 +1,6 @@
 /* General container styles */
 .leaderboard-container {
-  font-family: Arial, sans-serif;
-  max-width: 600px;
+  max-width: 800px; 
   margin: 20px auto;
   padding: 20px;
   text-align: center;
@@ -24,10 +23,10 @@
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  gap: 10px; /* Space between buttons */
 }
 
 .filter-buttons button {
-  margin: 0 10px;
   padding: 10px 20px;
   font-size: 1em;
   color: #fff;
@@ -50,12 +49,13 @@
 .player-list {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
+/* Player item */
 .player-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: center; /* Vertically align items */
   margin: 10px 0;
   padding: 10px 15px;
   background-color: #fff;
@@ -64,23 +64,57 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.player-club{
+/* Player rank */
+.player-rank {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+  margin-right: 10px; /* Space between rank and image */
+  min-width: 30px; /* Ensure consistent width for ranks */
+  text-align: center;
+}
+
+/* Player image */
+.player-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px; /* Space between image and name */
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+/* Player name and club */
+.player-club {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  margin-right: auto; /* Push stats to the right */
 }
 
 .player-name {
   font-weight: bold;
   font-size: 1.1em;
   color: #333;
+  cursor: pointer;
+  text-decoration: none !important;
 }
 
+.player-name:hover {
+  color: #007bff;
+}
+
+.club-name {
+  font-size: 0.8em;
+  color: #555;
+  margin-top: 2px; /* Space between name and club */
+}
+
+/* Player stat */
 .player-stat {
   font-size: 1em;
   color: #555;
+  margin-left: 10px; /* Space between name and stat */
 }
 
 /* Pagination container */
@@ -115,8 +149,4 @@
 .page-info {
   font-size: 1em;
   color: #555;
-}
-
-.club-name{
-  font-size: x-small;
 }

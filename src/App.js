@@ -11,6 +11,7 @@ import Explore from './Components/Pages/explore/Explore';
 import NewsItemPage from './Components/Pages/newsItemPage/NewsItemPage';
 import Footer from './Components/Pages/footer/Footer';
 import SmoothScroll from './Components/Pages/SmoothScroll';
+import PlayerStats from './Components/Pages/playerStats/PlayerStats';
 import './App.css'; 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/news/:id" element={<NewsItemPage />} />
+          <Route path="/player/:playerId" element={<PlayerStats />} />
         </Routes>
       </div>
       <Footer />
