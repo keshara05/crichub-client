@@ -6,7 +6,7 @@ import "./news.css";
 const News = () => {
   const { data, loading, error } = useFetch("http://localhost:8000/api/news");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 6;
   const navigate = useNavigate(); // Initialize useNavigate
 
   if (loading) {
@@ -51,7 +51,7 @@ const News = () => {
   };
 
   return (
-    <div className="news-container">
+    <div className="news-page-container">
       <h1 className="news-header">Latest News</h1>
       <div className="news-grid">
         {currentNews.map((item) => (

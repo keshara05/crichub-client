@@ -4,28 +4,28 @@
   padding: 20px;
 }
 
-.news-title {
+.news-item-page .news-title {
   font-size: 2.5rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 20px;
 }
 
-.news-meta {
+.news-item-page .news-meta {
   font-size: 1rem;
   color: #777;
   margin-bottom: 20px;
 }
 
-.news-author {
+.news-item-page .news-author {
   margin-right: 10px;
 }
 
-.news-date {
+.news-item-page .news-date {
   font-style: italic;
 }
 
-.news-image {
+.news-item-page .news-image {
   width: 100%;
   height: auto;
   max-height: 400px;
@@ -34,7 +34,7 @@
   margin-bottom: 20px;
 }
 
-.news-content {
+.news-item-page .news-content {
   font-size: 1.1rem;
   color: #555;
   line-height: 1.8;
@@ -42,9 +42,9 @@
 }
 
 /* Loading and Error States */
-.loading-indicator,
-.error-indicator,
-.news-empty {
+.news-item-page .loading-indicator,
+.news-item-page .error-indicator,
+.news-item-page .news-empty {
   text-align: center;
   font-size: 1.5rem;
   color: #777;
