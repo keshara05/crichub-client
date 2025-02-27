@@ -100,8 +100,6 @@ const Leaderboard = () => {
                   ? player.bowlingRank
                   : filter === "batting"
                   ? player.battingRank
-                  : filter === "fielding"
-                  ? player.fielding.rank
                   : player.allRounderRank}
               </span>
 
@@ -132,9 +130,6 @@ const Leaderboard = () => {
               )}
               {filter === "batting" && (
                 <span className="player-stat">{player.batting.runs} Runs</span>
-              )}
-              {filter === "fielding" && (
-                <span className="player-stat">{player.fielding.catches} Catches</span>
               )}
               {filter === "allRounder" && (
                 <span className="player-stat">
