@@ -1,7 +1,31 @@
 import React from "react";
 import "./explore.css";
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Explore = () => {
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_rbgvsul', 'template_5mqy704', form.current, {
+        publicKey: '1uUKfMHSToYNKwNrK',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          console.log("message sent");
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
+
+
   return (
     <div className="explore-more">
       {/* System Features Section */}
@@ -58,13 +82,15 @@ const Explore = () => {
           <p>Phone: +123 456 7890</p>
           <p>Or fill out the form below:</p>
         </div>
-        <form className="contact-form">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <input type="text" placeholder="Club Name" required />
-          <textarea placeholder="Your Message" rows="5" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
+        <form className="contact-form" ref={form} onSubmit={sendEmail}>
+      <label>Name</label>
+      <input type="text" name="user_name" />
+      <label>Email</label>
+      <input type="email" name="user_email" />
+      <label>Message</label>
+      <textarea name="message" />
+      <input type="submit" value="Send" />
+    </form>
       </section>
     </div>
   );

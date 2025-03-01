@@ -17,7 +17,6 @@ import './App.css';
 function App() {
   return (
     <div className="app-container">
-      <SmoothScroll>
       <Navbar />
       {/* <BlurBackground /> */}
       <div className="main-content">
@@ -33,7 +32,6 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      </SmoothScroll>
     </div>
   );
 }
