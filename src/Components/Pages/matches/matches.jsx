@@ -45,7 +45,7 @@ const Matches = () => {
                 <div className="match-body">
                   <div className="team">
                     <div className="team-info">
-                      <img src={currentClubFlag} alt={`${currentClubName} flag`} className="team-flag" />
+                  
                       <p className="team-name">{currentClubName}</p>
                     </div>
                     <p className="team-stats">{`${currentClub.score}/${currentClub.wickets} (${currentClub.overs})`}</p>
@@ -53,7 +53,7 @@ const Matches = () => {
 
                   <div className="team">
                     <div className="team-info">
-                      <img src={opponentClubFlag} alt={`${opponentClubName} flag`} className="team-flag" />
+                      
                       <p>{opponentClubName}</p>
                     </div>
                     <p>{match.currentInnings === "club1" ? "Yet to bat" : `${opponentClub.score}/${opponentClub.wickets}`}</p>
