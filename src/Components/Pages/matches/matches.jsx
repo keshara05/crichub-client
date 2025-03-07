@@ -1,10 +1,11 @@
 import React from "react";
 import useFetch from "../../../hooks/useFetch";
 import "./matches.css";
+import API_LINK from "../../../hooks/config"
 
 const Matches = () => {
   const { data: matches, loading, error } = useFetch("http://localhost:8000/api/matches");
-  const { data: clubs } = useFetch("http://localhost:8000/api/clubs");
+  const { data: clubs } = useFetch(`${API_LINK}/api/clubs`);
 
   const getClubNameById = (id) => {
     const club = clubs?.find((club) => club._id === id);
