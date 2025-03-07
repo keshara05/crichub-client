@@ -18,9 +18,11 @@ const Explore = () => {
         () => {
           console.log('SUCCESS!');
           console.log("message sent");
+          form.current.reset();
         },
         (error) => {
           console.log('FAILED...', error.text);
+          form.current.reset();
         },
       );
   };
