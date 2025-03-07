@@ -10,9 +10,9 @@ import { Link, useNavigate } from "react-router-dom";
 import API_LINK from "../../../hooks/config"
 
 const Dashboard = () => {
-  const { data: matches, loading: matchesLoading, error: matchesError } = useFetch("http://localhost:8000/api/matches?limit=6");
+  const { data: matches, loading: matchesLoading, error: matchesError } = useFetch(`${API_LINK}/api/matches?limit=6`);
   const { data: clubs } = useFetch(`${API_LINK}/api/clubs`);
-  const { data: news, loading: newsLoading, error: newsError } = useFetch("http://localhost:8000/api/news");
+  const { data: news, loading: newsLoading, error: newsError } = useFetch(`${API_LINK}/api/news`);
   const navigate = useNavigate(); // Hook for navigation
 
   const getClubNameById = (id) => {
